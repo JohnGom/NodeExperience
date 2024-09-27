@@ -1,6 +1,9 @@
-const http = require('node:http') // protocolo HTTP
+import { createServer } from 'node:http' // protocolo HTTP
+import { readJson } from '../src/utils.js'
 
-const dittoJSON = require('./pokemon/ditto.json')
+const dittoJSON = readJson('../example/ditto.json')
+
+// native option
 const processRequest = (req, res) => {
   const { method, url } = req
 
@@ -47,7 +50,7 @@ const processRequest = (req, res) => {
   }
 }
 
-const server = http.createServer(processRequest)
+const server = createServer(processRequest)
 
 server.listen(1234, () => {
   console.log('server listening on port http://localhost:1234')
